@@ -57,5 +57,5 @@ class reg(metaclass=Meta):
     def get(cls, key, default=None):
         try:
             return cls[key]
-        except Entry.DoesNotExist:
+        except KeyError:
             return default
