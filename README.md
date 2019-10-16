@@ -4,6 +4,12 @@ Putting your settings in `settings.py` or as environment variables also mean an 
 
 This Django app leverage the built-in Django admin so changing settings is easier as you can use the web interface.
 
+## Requirements
+* Python 3
+* Django >= 1.11
+
+I only did a quick test with Python 3.6 on Django 1.11 and the latest Django, which is 2.2.6 at the time being.
+
 ## Installation
 
 Install DJ-Registry with your favorite Python package manager:
@@ -77,3 +83,6 @@ The comment field is also meant to be used in the admin interface. It is a conve
 50: average use case.
 9999: maximum special case
 ```
+
+## Types
+`integer`, `float`, and `string` are the supported types for now. There might be `boolean` in the future.
