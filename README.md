@@ -9,7 +9,7 @@ This Django app leverage the built-in Django admin so changing settings is easie
 Install DJ-Registry with your favorite Python package manager:
 
 ```
-pip install dj_registry
+(venv)$ pip install dj_registry
 ```
 
 Add `registry` to your `INSTALLED_APPS` settings:
@@ -25,14 +25,14 @@ INSTALLED_APPS = [
 Migrate the database
 
 ```
-./manage.py migrate
+(venv)$ ./manage.py migrate
 ```
 
 Then, we're all set!
 
 ## Usage
 
-Log in to the admin, and create some keys under the "Django Registry" > "Entries" section. Let's say, we create `mailgun.key` and `mailgun.domain` with the corresponding `string` type and values.
+Log in to the admin, and create some keys under the **Django Registry** > **Entries** section. Let's say, we create `mailgun.key` and `mailgun.domain` with the corresponding `string` type and values.
 We then create another entry with `game.max_score` as the key, `10000` as the value and `integer` as the type.
 
 The following example shows you how to access them in code:
@@ -57,4 +57,23 @@ You can set or delete entry if you want
 ```py
 reg['game.levels'] = 12             # Set game.levels to 12 (integer) and save
 del reg['game.levels']              # Delete game.levels
+```
+
+## Enabled and comment field
+If you want to disable a key, just toggle the `enabled` boolean in the admin interface. It would be treated as if the key didn't exist. This is something meant to be used in the admin interface.
+If you want to manipulate this in the code, you will have to access the raw model like the following:
+
+```py
+from registry.models import Entry
+
+e = Entry.objects.get('game.levels')
+e.enabled = False
+e.save()
+```
+
+The comment field is also meant to be used in the admin interface. It is a convenient cell for user to put comments regarding to the settings, something like the following:
+
+```
+50: average use case.
+9999: maximum special case
 ```
