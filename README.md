@@ -85,4 +85,4 @@ The comment field is also meant to be used in the admin interface. It is a conve
 ```
 
 ## Types
-`integer`, `float`, and `string` are the supported types for now. There might be `boolean` in the future.
+`integer`, `float`, `string`, and `boolean` are the supported types for now.

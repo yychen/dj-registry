@@ -13,6 +13,8 @@ class Meta(type):
             return int(entry.value)
         elif entry.type == Entry.Types.FLOAT:
             return float(entry.value)
+        elif entry.type == Entry.Types.BOOLEAN:
+            return True if entry.value == 'true' else False
 
         raise TypeError
 
@@ -31,6 +33,9 @@ class Meta(type):
             entry.type = Entry.Types.INTEGER
         elif type(value) == float:
             entry.type = Entry.Types.FLOAT
+        elif type(value) == bool:
+            entry.type = Entry.Types.BOOLEAN
+            entry.value = str(value).lower()
         else:
             entry.type = Entry.Types.STRING
 

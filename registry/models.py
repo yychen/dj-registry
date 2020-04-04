@@ -9,11 +9,13 @@ class Entry(models.Model):
         STRING = 'str'
         INTEGER = 'int'
         FLOAT = 'float'
+        BOOLEAN = 'bool'
 
         choices = (
             (STRING, 'string'),
             (INTEGER, 'integer'),
             (FLOAT, 'float'),
+            (BOOLEAN, 'bool'),
         )
 
     key = models.CharField('Key', max_length=64, db_index=True)
@@ -31,6 +33,16 @@ class Entry(models.Model):
                 int(self.value)
             elif self.type == self.Types.FLOAT:
                 float(self.value)
+            elif self.type == self.Types.BOOLEAN:
+                if self.value.lower() in ['true', 'yes', '1']:
+                    self.value = 'true'
+
+                if self.value.lower() in ['false', 'no', '0']:
+                    self.value = 'false'
+
+                if self.value != 'true' and self.value != 'false':
+                    raise ValidationError({'value': _('Accepted boolean values: true, false, yes, no, 0, 1')})
+
         except ValueError:
             raise ValidationError({'value': _('Invalid value of the specified type.')})
 
