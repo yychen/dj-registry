@@ -5,10 +5,17 @@ Putting your settings in `settings.py` or as environment variables also mean an 
 This Django app leverage the built-in Django admin so changing settings is easier as you can use the web interface.
 
 ## Requirements
-* Python 3
-* Django >= 1.11
+* Python = "^3.6"
+* Django = "^3"
 
-I only did a quick test with Python 3.6 on Django 1.11 and the latest Django, which is 2.2.6 at the time being.
+Run the following command inside project's root folder to install it's dependencies with Poetry:
+
+```
+$ poetry install
+```
+You can specify to the command that you do not want the development dependencies installed by passing the `--no-dev` option.
+
+If you have not yet installed Poetry, please refer to their [official documentation](https://python-poetry.org/docs/#installation).
 
 ## Installation
 
