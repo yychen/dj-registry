@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "dj-registry"
-version = "0.1.0"
+name = "dj_registry"
+version = "0.2.1"
 description = "A simple, easy access key-value registry for Django."
-authors = ["yychen <ctchen@gmail.com>"]
+authors = ["Tom Chiung-ting Chen <ctchen@gmail.com>"]
 license = "MIT License"
 
 [tool.poetry.dependencies]
-python = ">=3.8"
-Django = ">=3"
+python = "^3.6"
+Django = "^3"
 
 [tool.poetry.dev-dependencies]
 
