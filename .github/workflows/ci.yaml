@@ -34,3 +34,6 @@ jobs:
       
     - name: Install project dependencies
       run: poetry install
+    
+    - name: Run flake8
+      run: poetry run flake8

@@ -3,7 +3,6 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 
-# Create your models here.
 class Entry(models.Model):
     class Types:
         STRING = 'str'
@@ -45,7 +44,6 @@ class Entry(models.Model):
 
         except ValueError:
             raise ValidationError({'value': _('Invalid value of the specified type.')})
-
 
     class Meta:
         verbose_name_plural = 'entries'

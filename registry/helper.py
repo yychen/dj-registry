@@ -1,5 +1,6 @@
 from .models import Entry
 
+
 class Meta(type):
     def __getitem__(self, key):
         try:
