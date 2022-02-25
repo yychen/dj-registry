@@ -25,6 +25,9 @@ classifiers = [
     'Programming Language :: Python :: 3 :: Only',
     'Topic :: Internet :: WWW/HTTP',
 ]
+packages = [
+    { include = "registry" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.6"
