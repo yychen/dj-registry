@@ -30,8 +30,8 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
-Django = ">=3,<6"
+python = "^3.8"
+Django = ">=4.2,<6"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^4.0.1"
