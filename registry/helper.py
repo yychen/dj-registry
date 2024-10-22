@@ -1,3 +1,4 @@
+import json
 from .models import Entry
 
 
@@ -16,6 +17,8 @@ class Meta(type):
             return float(entry.value)
         elif entry.type == Entry.Types.BOOLEAN:
             return True if entry.value == 'true' else False
+        elif entry.type == Entry.Types.JSON:
+            return json.loads(entry.value)
 
         raise TypeError
 
@@ -37,6 +40,9 @@ class Meta(type):
         elif type(value) == bool:
             entry.type = Entry.Types.BOOLEAN
             entry.value = str(value).lower()
+        elif isinstance(value, (dict, list)):
+            entry.type = Entry.Types.JSON
+            entry.value = json.dumps(value)
         else:
             entry.type = Entry.Types.STRING
 
