@@ -1,3 +1,4 @@
+import json
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
@@ -9,12 +10,14 @@ class Entry(models.Model):
         INTEGER = 'int'
         FLOAT = 'float'
         BOOLEAN = 'bool'
+        JSON = 'json'
 
         choices = (
             (STRING, 'string'),
             (INTEGER, 'integer'),
             (FLOAT, 'float'),
             (BOOLEAN, 'bool'),
+            (JSON, 'json'),
         )
 
     key = models.CharField('Key', max_length=64, db_index=True)
@@ -41,9 +44,13 @@ class Entry(models.Model):
 
                 if self.value != 'true' and self.value != 'false':
                     raise ValidationError({'value': _('Accepted boolean values: true, false, yes, no, 0, 1')})
+            elif self.type == self.Types.JSON:
+                json.loads(self.value)
 
         except ValueError:
             raise ValidationError({'value': _('Invalid value of the specified type.')})
+        except json.JSONDecodeError:
+            raise ValidationError({'value': _('Invalid JSON value.')})
 
     class Meta:
         verbose_name_plural = 'entries'
